@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function LoginPage() {
-  const { login } = useAuth();
+  const { login, token } = useAuth();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +25,12 @@ export default function LoginPage() {
       setLoading(false);
     }
   }
+
+  setTimeout(() => {
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, 1000);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 via-slate-50 to-slate-200 p-4">
