@@ -134,6 +134,7 @@ function EquipmentDetailInner() {
                     <button
                       onClick={async () => {
                         if (confirm("Delete this maintenance log?")) {
+                          setLoading(true);
                           await apiClient(token).delete(
                             `/maintenance/${log.id}`
                           );
@@ -143,6 +144,7 @@ function EquipmentDetailInner() {
                               (l: any) => l.id !== log.id
                             ),
                           }));
+                          setLoading(false);
                         }
                       }}
                       className="text-red-600 text-sm font-medium hover:underline"
